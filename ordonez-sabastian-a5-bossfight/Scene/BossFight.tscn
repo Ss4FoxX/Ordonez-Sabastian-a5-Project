@@ -1,0 +1,100 @@
+[gd_scene load_steps=9 format=3 uid="uid://bpromo6ip1qk"]
+
+[ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="1_2blha"]
+[ext_resource type="Script" path="res://Scene/Movement.cs" id="2_vp6jn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v7esx"]
+size = Vector2(3.76522, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_65qqe"]
+size = Vector2(436, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dq3ee"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r6b7h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pbotl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nid6c"]
+size = Vector2(20, 30)
+
+[node name="Bossfight" type="Node2D"]
+
+[node name="Arena" type="Node2D" parent="."]
+
+[node name="Floor" type="StaticBody2D" parent="Arena"]
+position = Vector2(575, 594)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arena/Floor"]
+position = Vector2(-358.5, 0)
+scale = Vector2(115, 5)
+shape = SubResource("RectangleShape2D_v7esx")
+
+[node name="Rectangle2" type="Node2D" parent="Arena/Floor"]
+position = Vector2(-356.718, 0)
+scale = Vector2(1, 1)
+script = ExtResource("1_2blha")
+size = Vector2(436.563, 100)
+fill_color = Color(1, 0.366667, 0, 1)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Arena/Floor"]
+position = Vector2(105, 0)
+shape = SubResource("RectangleShape2D_65qqe")
+
+[node name="Rectangle" type="Node2D" parent="Arena/Floor"]
+position = Vector2(113, -2)
+script = ExtResource("1_2blha")
+size = Vector2(436.25, 100)
+fill_color = Color(1, 0.7, 0, 1)
+
+[node name="LeftWall" type="StaticBody2D" parent="Arena"]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arena/LeftWall"]
+shape = SubResource("RectangleShape2D_dq3ee")
+
+[node name="Rectangle" type="Node2D" parent="Arena/LeftWall"]
+script = ExtResource("1_2blha")
+
+[node name="RightWall" type="StaticBody2D" parent="Arena"]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arena/RightWall"]
+shape = SubResource("RectangleShape2D_r6b7h")
+
+[node name="Rectangle" type="Node2D" parent="Arena/RightWall"]
+script = ExtResource("1_2blha")
+
+[node name="Roof" type="StaticBody2D" parent="Arena"]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arena/Roof"]
+shape = SubResource("RectangleShape2D_pbotl")
+
+[node name="Rectangle" type="Node2D" parent="Arena/Roof"]
+script = ExtResource("1_2blha")
+
+[node name="Character" type="Node2D" parent="."]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Character"]
+use_parent_material = true
+position = Vector2(149, 459)
+scale = Vector2(0.353932, 1.12999)
+floor_stop_on_slope = false
+floor_constant_speed = true
+script = ExtResource("2_vp6jn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Character/CharacterBody2D"]
+scale = Vector2(3.53175, 1.32745)
+shape = SubResource("RectangleShape2D_nid6c")
+
+[node name="Camera2D" type="Camera2D" parent="Character/CharacterBody2D"]
+scale = Vector2(2.8254, 0.884966)
+offset = Vector2(0, -100)
+zoom = Vector2(2, 2)
+
+[node name="Rectangle" type="Node2D" parent="Character/CharacterBody2D"]
+position = Vector2(0, -0.0122604)
+script = ExtResource("1_2blha")
+size = Vector2(70.771, 39.8774)
+corner_radius = 2.0
